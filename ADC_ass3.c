@@ -30,7 +30,7 @@ u8 GetPassword (void);
 int main ()
 {
 
-	u8 Password_Flag,Local_Display_Flag=3,Local_Choose;
+	u8 Password_Flag,Local_Display_Flag=4,Local_Choose;
 	u16 Local_analogNew,Local_analogOld=0,Local_u16Volt,Local_u16Ohm,Local_u16DigitalValue;
 
 	DIO_voidInit();
@@ -56,13 +56,13 @@ int main ()
 		}
 		else if (Password_Flag ==0)
 		{
-			if (Local_Display_Flag==3)
+			if (Local_Display_Flag==4)
 			{
 				LCD_voidClearDisplay();
 				LCD_u8GoToXY(1,0);
-				LCD_voidWriteString("1-Voltmeter");
+				LCD_voidWriteString("1-VoltM  3-Back");
 				LCD_u8GoToXY(2,0);
-				LCD_voidWriteString("2-Ohmmeter");
+				LCD_voidWriteString("2-OhmM  4-Exit");
 				_delay_ms(2);
 				Local_Display_Flag=0;
 			}
@@ -85,10 +85,11 @@ int main ()
 					break;
 				case '2':
 					Local_Display_Flag=2;
-
-
 					break;
 				case '3':
+					Local_Display_Flag=4;
+					break;
+				case '4':
 					Local_Display_Flag=3;
 					break;
 				}
@@ -106,6 +107,9 @@ int main ()
 					LCD_voidWriteNumber(Local_u16Ohm);
 					LCD_voidWriteString(" Ohm");
 					break;
+				case 3:
+					Password_Flag=2;
+					break;
 				}
 
 			}
@@ -114,7 +118,10 @@ int main ()
 
 		else
 		{
-			break;
+			LCD_voidClearDisplay();
+			Password_Flag=GetPassword();
+			Local_Display_Flag=4;
+
 		}
 	}
 	return 0;
