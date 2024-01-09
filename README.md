@@ -11,6 +11,6 @@
 -when you enter the correct password , it takes you to the next window and you only have 3 attempts to try it.If you enter the password incorrectly more than 3 times,the system will shut down for 5 seconds.    
 -The Next window have four choose:   
 1-VoltMeter  
-2-OhmMeter 
+2-OhmMeter   
 3-Back  
 4-Exit  
